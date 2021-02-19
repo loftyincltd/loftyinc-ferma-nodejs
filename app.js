@@ -1,20 +1,15 @@
 
 var express = require('express');
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
-var favicon = require('serve-favicon');
 var logger = require('morgan');
 var jwt = require('express-jwt');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var cluster = require('cluster');
-var sticky = require('sticky-session');
-var multipart = require('connect-multiparty');
 const http = require('http');
 var mkdirp = require('mkdirp');
 var CryptoJS = require("crypto-js");
 
 
-//const s3 = require('./config/s3');
 
 mkdirp('uploads', function(err) {
   if(err){
@@ -45,6 +40,7 @@ app.set('view engine', 'ejs');
 app.use(jwt({
   secret: config.secret,
   credentialsRequired: false,
+  algorithms:['RS256',],
   getToken: function fromHeaderOrQuerystring (req) {
     if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
       if(!req.headers.plain){
@@ -102,61 +98,12 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-if(cluster.isMaster) {
-  var numWorkers = require('os').cpus().length;
-
-  console.log('Master cluster setting up ' + numWorkers + ' workers...');
-
-  for(var i = 0; i < numWorkers; i++) {
-    const worker = cluster.fork();
-    worker.on('exit', (code, signal) => {
-      if (worker.suicide === true) {
-        console.log('Oh, it was just voluntary – no need to worry');
-      }
-      else if (worker.exitedAfterDisconnect === true) {
-        console.log('Oh, it was just voluntary – no need to worry');
-      }else{
-        if (signal) {
-          console.log(`worker was killed by signal: ${signal}`);
-        } else if (code !== 0) {
-          console.log(`worker exited with error code: ${code}`);
-        } else {
-          console.log('worker success!');
-        }
-
-      }
-
-    });
-    worker.on('disconnect', () => {
-
-    });
-    worker.on('message',(msg)=>{
-      //worker.kill();
-    })
-  }
-
-  cluster.on('online', function(worker) {
-    console.log('Worker ' + worker.process.pid + ' is online');
-  });
-  cluster.on('fork', (worker) => {
-
-  });
-  cluster.on('exit', function(worker, code, signal) {
-    console.log('Worker ' + worker.process.pid + ' died with code: ' + code + ', and signal: ' + signal);
-    console.log('Starting a new worker');
-    cluster.fork();
-  });
-  cluster.on('listening', (worker, address) => {
-    console.log(
-        `A worker is now connected to ${address.address}:${address.port}`);
-  });
-} else {
-  var server = http.createServer(app);
-
+ var server = http.createServer(app);
+  
   server.on("connection", function (socket) {
 
     socket.setNoDelay(true);//disable nagle algorithm
-    //console.log('no delay set')
+
 
   });
   server.listen(config.port,'0.0.0.0',function(){
@@ -165,21 +112,16 @@ if(cluster.isMaster) {
   });
 
   //cluster sticky session
-  sticky.listen(server,config.port)
+  //sticky.listen(server,config.port)
   // Master code
   server.once('listening', function() {
-
   });
-
-
-
-
-
-}
 process.on('message', (msg) => {
   if (msg === 'shutdown') {
 
   }
 });
-
+process.on('uncaughtException', function(e){
+  console.log(e)
+});
 module.exports = app;

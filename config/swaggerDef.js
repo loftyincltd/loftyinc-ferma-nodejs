@@ -4,9 +4,9 @@ const options = {
   definition: {
   //  openapi: '3.0.0', // Specification (optional, defaults to swagger: '2.0')
     info: {
-      title: 'Sety', // Title (required)
+      title: 'Roadmap', // Title (required)
       version: '1.0.0', // Version (required)
-      description: 'Api For sety project',
+      description: 'Api For Roadmap project',
     },
     securityDefinitions: {
         bearerAuth: {
@@ -18,8 +18,7 @@ const options = {
     }
   },
   // Path to the API docs
- // apis: ['./controllers/v1/*.js','./models/*.js'],
- apis: ['./controllers/v1/User.js','./models/*.js'],
+  apis: ['./controllers/v1/*.js','./models/*.js'],
 };
 
 // Initialize swagger-jsdoc -> returns validated swagger spec in json format

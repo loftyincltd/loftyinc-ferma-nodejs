@@ -4,7 +4,7 @@ var rootPath = path.normalize(__dirname + '');
 module.exports = {
     development: {
         db: 'mongodb://'+process.env.DB_USER+':'+
-        process.env.DB_PASS+'@'+process.env.DB_HOST+':'+process.env.DB_PORT+'/'+ process.env.DB_NAME+'?authSource=admin',
+        encodeURIComponent(process.env.DB_PASS)+'@'+process.env.DB_HOST+':'+process.env.DB_PORT+'/'+ process.env.DB_NAME+'?authSource=admin',
         dbUser:process.env.DB_USER,
         dbPass:process.env.DB_PASS,
         rootPath: rootPath,

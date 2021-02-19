@@ -1,0 +1,727 @@
+[
+  {
+    "S/N": "",
+    "STATE": "ABIA",
+    "SENATORIAL DISTRICTS": "ABIA NORTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "ABIA CENTRAL"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "ABIA SOUTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": ""
+  },
+  {
+    "S/N": "",
+    "STATE": "AKWA IBOM",
+    "SENATORIAL DISTRICTS": "AKWA IBOM NORTH EAST"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "AKWA IBOM NORTH WEST"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "AKWA IBOM SOUTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": ""
+  },
+  {
+    "S/N": "",
+    "STATE": "ADAMAWA",
+    "SENATORIAL DISTRICTS": "ADAMAWA NORTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "ADAMAWA SOUTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "ADAMAWA CENTRAL"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": ""
+  },
+  {
+    "S/N": "",
+    "STATE": "ANAMBRA",
+    "SENATORIAL DISTRICTS": "ANAMBRA NORTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "ANAMBRA CENTRAL"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "ANAMBRA SOUTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": ""
+  },
+  {
+    "S/N": "",
+    "STATE": "BAUCHI",
+    "SENATORIAL DISTRICTS": "BAUCHI SOUTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "BAUCHI CENTRAL"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "BAUCHI NORTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": ""
+  },
+  {
+    "S/N": "",
+    "STATE": "BAYELSA",
+    "SENATORIAL DISTRICTS": "BAYELSA EAST"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "BAYELSA CENTRAL"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "BAYELSA WEST"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": ""
+  },
+  {
+    "S/N": "",
+    "STATE": "BENUE",
+    "SENATORIAL DISTRICTS": "BENUE NORTH EAST"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "BENUE NORTH WEST"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "BENUE SOUTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": ""
+  },
+  {
+    "S/N": "",
+    "STATE": "BORNO",
+    "SENATORIAL DISTRICTS": "BORNO NORTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "BORNO CENTRAL"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "BORNO SOUTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": ""
+  },
+  {
+    "S/N": "",
+    "STATE": "CROSS RIVER",
+    "SENATORIAL DISTRICTS": "CROSS RIVER NORTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "CROSS RIVER CENTRAL"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "CROSS RIVER SOUTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": ""
+  },
+  {
+    "S/N": "",
+    "STATE": "DELTA",
+    "SENATORIAL DISTRICTS": "DELTA CENTRAL"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "DELTA NORTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "DELTA SOUTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": ""
+  },
+  {
+    "S/N": "",
+    "STATE": "EBONYI",
+    "SENATORIAL DISTRICTS": "EBONYI NORTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "EBONYI CENTRAL"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "EBONYI SOUTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": ""
+  },
+  {
+    "S/N": "",
+    "STATE": "EDO",
+    "SENATORIAL DISTRICTS": "EDO CENTRAL"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "EDO NORTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "EDO SOUTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": ""
+  },
+  {
+    "S/N": "",
+    "STATE": "EKITI",
+    "SENATORIAL DISTRICTS": "EKITI NORTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "EKITI CENTRAL"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "EKITI SOUTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": ""
+  },
+  {
+    "S/N": "",
+    "STATE": "ENUGU",
+    "SENATORIAL DISTRICTS": "ENUGU EAST"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "ENUGU WEST"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "ENUGU NORTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": ""
+  },
+  {
+    "S/N": "",
+    "STATE": "GOMBE",
+    "SENATORIAL DISTRICTS": "GOMBE CENTRAL"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "GOMBE SOUTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "GOMBE NORTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": ""
+  },
+  {
+    "S/N": "",
+    "STATE": "IMO",
+    "SENATORIAL DISTRICTS": "IMO EAST"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "IMO WEST"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "IMO NORTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": ""
+  },
+  {
+    "S/N": "",
+    "STATE": "JIGAWA",
+    "SENATORIAL DISTRICTS": "JIGAWA SOUTH – WEST"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "JIGAWA NORTH – EAST"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "JIGAWA NORTH – WEST"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": ""
+  },
+  {
+    "S/N": "",
+    "STATE": "KADUNA",
+    "SENATORIAL DISTRICTS": "KADUNA NORTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "KADUNA CENTRAL"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "KADUNA SOUTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": ""
+  },
+  {
+    "S/N": "",
+    "STATE": "KANO",
+    "SENATORIAL DISTRICTS": "KANO CENTRAL"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "KANO NORTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "KANO SOUTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": ""
+  },
+  {
+    "S/N": "",
+    "STATE": "KATSINA",
+    "SENATORIAL DISTRICTS": "KATSINA NORTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "KATSINA SOUTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "KATSINA CENTRAL"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": ""
+  },
+  {
+    "S/N": "",
+    "STATE": "KEBBI",
+    "SENATORIAL DISTRICTS": "KEBBI NORTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "KEBBI CENTRAL"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "KEBBI SOUTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": ""
+  },
+  {
+    "S/N": "",
+    "STATE": "KOGI",
+    "SENATORIAL DISTRICTS": "KOGI CENTRAL"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "KOGI EAST"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "KOGI WEST"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": ""
+  },
+  {
+    "S/N": "",
+    "STATE": "KWARA",
+    "SENATORIAL DISTRICTS": "KWARA NORTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "KWARA CENTRAL"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "KWARA SOUTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": ""
+  },
+  {
+    "S/N": "",
+    "STATE": "LAGOS",
+    "SENATORIAL DISTRICTS": "LAGOS CENTRAL"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "LAGOS EAST"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "LAGOS WEST"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": ""
+  },
+  {
+    "S/N": "",
+    "STATE": "NASSARAWA",
+    "SENATORIAL DISTRICTS": "NASSARAWA NORTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "NASSARAWA WEST"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "NASSARAWA SOUTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": ""
+  },
+  {
+    "S/N": "",
+    "STATE": "NIGER",
+    "SENATORIAL DISTRICTS": "NIGER EAST"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "NIGER NORTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "NIGER SOUTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": ""
+  },
+  {
+    "S/N": "",
+    "STATE": "OGUN",
+    "SENATORIAL DISTRICTS": "OGUN CENTRAL"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "OGUN EAST"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "OGUN WEST"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": ""
+  },
+  {
+    "S/N": "",
+    "STATE": "ONDO",
+    "SENATORIAL DISTRICTS": "ONDO NORTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "ONDO CENTRAL"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "ONDO SOUTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": ""
+  },
+  {
+    "S/N": "",
+    "STATE": "OSUN",
+    "SENATORIAL DISTRICTS": "OSUN CENTRAL"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "OSUN EAST"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "OSUN WEST"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": ""
+  },
+  {
+    "S/N": "",
+    "STATE": "OYO",
+    "SENATORIAL DISTRICTS": "OYO CENTRAL"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "OYO NORTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "OYO SOUTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": ""
+  },
+  {
+    "S/N": "",
+    "STATE": "PLATEAU",
+    "SENATORIAL DISTRICTS": "PLATEAU SOUTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "PLATEAU CENTRAL"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "PLATEAU NORTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": ""
+  },
+  {
+    "S/N": "",
+    "STATE": "RIVERS",
+    "SENATORIAL DISTRICTS": "RIVERS EAST"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "RIVERS SOUTH EAST"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "RIVERS WEST"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": ""
+  },
+  {
+    "S/N": "",
+    "STATE": "SOKOTO",
+    "SENATORIAL DISTRICTS": "SOKOTO EAST"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "SOKOTO NORTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "SOKOTO SOUTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": ""
+  },
+  {
+    "S/N": "",
+    "STATE": "TARABA",
+    "SENATORIAL DISTRICTS": "TARABA SOUTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "TARABA CENTRAL"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "TARABA NORTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": ""
+  },
+  {
+    "S/N": "",
+    "STATE": "YOBE",
+    "SENATORIAL DISTRICTS": "YOBE EAST"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "YOBE NORTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "YOBE SOUTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": ""
+  },
+  {
+    "S/N": "",
+    "STATE": "ZAMFARA",
+    "SENATORIAL DISTRICTS": "ZAMFARA NORTH"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "ZAMFARA CENTRAL"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": "ZAMFARA WEST"
+  },
+  {
+    "S/N": "",
+    "STATE": "",
+    "SENATORIAL DISTRICTS": ""
+  },
+  {
+    "S/N": "",
+    "STATE": "FCT",
+    "SENATORIAL DISTRICTS": "FEDERAL CAPITAL TERRITORY"
+  }
+]

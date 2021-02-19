@@ -1,7 +1,5 @@
 const Log =require('mongoose').model('Log');
-const validUser = require('./User').validUser;
 const validAdmin = require('./User').validAdmin;
-var Access = require('mongoose').model('access');
 /**
  * @swagger
  * /v1/api/log/all:
@@ -30,6 +28,10 @@ var Access = require('mongoose').model('access');
  *       - in: query
  *         name: all
  *         description: If this value is set the api is unpaginated
+ *       - in: query
+ *         name: class
+ *       - in: query
+ *         name: type
  *     responses:
  *       '200':
  *         description: Log List
@@ -42,13 +44,21 @@ exports.getLogs = function(req, res, next){
     const count = req.query['count'];
     const all = req.query['all'];
     const type = req.query['type'];
-    const currentuser = req.user ? req.user.data: {};
-    if(validUser(currentuser)){
+    const c = req.query['class'];
+    const user = req.user ? req.user.data: {};
+    if( validAdmin(user)){
 
-       let q={deleted: false, creator_id :currentuser._id};
-       if(type){
-           q.class= type
+       let q={deleted: false, };
+       if(user.type!= 'admin'){
+           q.creator_id = user._id;
        }
+       if(type){
+           q.type= type
+       }
+       if(c){
+        q.class=c
+    }
+    
        console.log(q)
         if(count){
             Log.countDocuments(q, function(err, resp){
@@ -128,8 +138,8 @@ exports.getReportLogs = function(req, res, next){
     const count = req.query['count'];
     const all = req.query['all'];
     const type = req.query['type'];
-    const currentuser = req.user ? req.user.data: {};
-    if(validAdmin(currentuser)){
+    const user = req.user ? req.user.data: {};
+    if( validAdmin(user)){
 
        let q={deleted: false,
       class:{$in:['login','will','declare']}
@@ -221,11 +231,11 @@ exports.getLogsAdmin = function(req, res, next){
     const all = req.query['all'];
     const lister_id = req.query['lister_id'];
       const type = req.query['type'];
-    const currentuser = req.user ? req.user.data: {};
-    if(validAdmin(currentuser) && lister_id){
+    const user = req.user ? req.user.data: {};
+    if(validAdmin(user) && lister_id){
         const  q1={
             user_id: lister_id ,
-            creator_id: currentuser._id,
+            creator_id: user._id,
             activated: true
         }
         Access.findOne(q1,{},{}, function(err, resp0){
@@ -310,7 +320,7 @@ exports.getLog= function(req, res){
     const user = req.user ? req.user.data: {};
     let log_id = req.query['log_id'];
     if(user &&user._id && log_id && 
-        (validUser(user)| validAdmin(user))){
+        (validAdmin(user))){
     
 
     Log.findOne({_id:log_id, }, function(err,ba){
