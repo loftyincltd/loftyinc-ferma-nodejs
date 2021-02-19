@@ -9,7 +9,7 @@ const http = require('http');
 var mkdirp = require('mkdirp');
 var CryptoJS = require("crypto-js");
 
-process.env.JWT_KEY.replace(/\\n/gm, '\n')
+
 
 mkdirp('uploads', );
 
@@ -18,7 +18,7 @@ const result = require('dotenv').config()
 if (result.error) {
   throw result.error
 }
-
+process.env.JWT_KEY.replace(/\\n/gm, '\n')
 var path = require('path');
 var config = require('./config/config')[env];
 
