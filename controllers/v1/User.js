@@ -166,7 +166,7 @@ exports.login = function(req, res,next){
  *       '500':
  *         description: Db Error
  */
-exports.getSingleOtherUser=function(req, res, next){
+exports.getSingleUser=function(req, res, next){
     const user = req.user ? req.user.data: {};
      let user_id = req.query['user_id'];
     if(user && user._id && user_id){
@@ -209,7 +209,7 @@ exports.getSingleOtherUser=function(req, res, next){
  *       '500':
  *         description: Db Error
  */
-exports.getSingleUser=function(req, res, next){
+exports.getMyDetails=function(req, res, next){
     const u = req.user ? req.user.data: {};
     if(u && u._id){
         User.findOne({

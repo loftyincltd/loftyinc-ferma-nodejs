@@ -17,8 +17,8 @@ router.post('/changePass', controllers.User.upass);
 router.get('/all',   controllers.User.getUsers);
 router.get('/search',   controllers.User.searchUser);
 
-router.get('/login', controllers.User.getSingleUser);
+router.get('/login', controllers.User.getMyDetails);
 router.delete('/',controllers.User.removeUser);
 router.post('/login', controllers.User.login);
-router.post('/get', controllers.User.getSingleUser);
+router.get('/user', controllers.User.getSingleUser);
 module.exports = router;
