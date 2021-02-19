@@ -23,7 +23,7 @@ function createToken(user, exp) {
         exp: exp|| Math.floor(Date.now() / 1000) + (60 * 60),
         data: pick(user)
     }
-    return jwt.sign(dat, config.secret);
+    return jwt.sign(dat, config.secret,{algorithm: 'RS256'});
 }
 function pick(user){
     return _.pick(user, 'type','relation','death_certificate','super','usergroup_id','admin_id', 'deleted', 'address','bvn','verified','username_verified','bvn_verified','username','phone','first_name','last_name','middle_name','_id','relation','company_id', 'plan','picture','payment_active','address', 'security_questions',
