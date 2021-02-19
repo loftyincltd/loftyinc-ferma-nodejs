@@ -34,7 +34,7 @@ app.set('view engine', 'ejs');
 app.use(jwt({
   secret: config.secret,
   credentialsRequired: false,
-  algorithms:['RS256',],
+  algorithms: ['RS256','HS256'],
   getToken: function fromHeaderOrQuerystring (req) {
     if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
       if(!req.headers.plain){
