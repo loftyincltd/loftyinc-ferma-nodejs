@@ -9,7 +9,7 @@ const http = require('http');
 var mkdirp = require('mkdirp');
 var CryptoJS = require("crypto-js");
 
-
+process.env.JWT_KEY.replace(/\\n/gm, '\n')
 
 mkdirp('uploads', );
 
