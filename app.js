@@ -11,13 +11,7 @@ var CryptoJS = require("crypto-js");
 
 
 
-mkdirp('uploads', function(err) {
-  if(err){
-    console.log(err);
-  }
-
-
-});
+mkdirp('uploads', );
 
 const result = require('dotenv').config()
 
