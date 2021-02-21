@@ -442,6 +442,7 @@ exports.createUser = function(req, res, next) {
         userData = JSON.parse(userData) ;
     }
     let pass =userData.password
+    console.log(userData)
     if(userData.username && userData.first_name && userData.last_name && user.type==='admin' &&
     ((u.super && userData.type ==='admin') ||userData.type ==='customer' )
     ) {
