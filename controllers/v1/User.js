@@ -786,7 +786,7 @@ exports.getUsers = function(req, res, next){
        
         q.type= type;
         if(qs){
-            qs ['$text']= {$search: qs}
+            q ['$text']= {$search: qs}
         }
         if(count){
             User.countDocuments(q, function(err, resp){
