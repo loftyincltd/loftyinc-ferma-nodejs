@@ -487,7 +487,7 @@ exports.createUser = function(req, res, next) {
 
                 res.status(400).send({error:err.toString()});
             } else{
-                return ({success: true})
+                res.send ({success: true})
             }
 
         });
