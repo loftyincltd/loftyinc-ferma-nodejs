@@ -857,7 +857,7 @@ exports.getUsers = function(req, res, next){
 const doDownload= function(path,res){
 
 
-    fs.readFile(path , function(err, data){
+    fs.readFile(path , 'utf8', function(err, data){
         if (err){ 
             res.send({error:err});
         }
