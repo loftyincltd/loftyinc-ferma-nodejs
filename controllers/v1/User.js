@@ -837,7 +837,7 @@ exports.getUsers = function(req, res, next){
                           csvWriter
                            .writeRecords(resp)
                             .then(()=> {
-                              doDownload()
+                              doDownload(path,res)
                                   
                             });
                     }else{
@@ -855,9 +855,9 @@ exports.getUsers = function(req, res, next){
     
 }
 const doDownload= function(path,res){
-    console.log(st);
 
-    fs.readFile(path , st, function(err, data){
+
+    fs.readFile(path , function(err, data){
         if (err){ 
             res.send({error:err});
         }
