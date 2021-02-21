@@ -862,6 +862,7 @@ const doDownload= function(path,res){
             res.send({error:err});
         }
         else{
+            console.log(data);
             res.set('Content-disposition', 'attachment; filename=file.csv');
             res.set('Content-Type', 'text/csv');
             res.download(path,path, (err)=>{
