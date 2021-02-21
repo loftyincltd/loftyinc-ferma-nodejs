@@ -442,7 +442,6 @@ exports.createUser = function(req, res, next) {
         userData = JSON.parse(userData) ;
     }
     let pass =userData.password
-    console.log(userData,user.super,  ((user.super && userData.type ==='admin') ||userData.type ==='customer' ), user.type)
     if(userData.username && userData.first_name && userData.last_name && user.type==='admin' &&
     ((user.super && userData.type ==='admin') ||userData.type ==='customer' )
     ) {
@@ -479,6 +478,7 @@ exports.createUser = function(req, res, next) {
            }
       
         User.create(u, function(err, user) {
+            console.log(err)
             if(err) {
                 if(err.toString().indexOf('E11000') > -1) {
 
