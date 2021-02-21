@@ -844,13 +844,13 @@ exports.getUsers = function(req, res, next){
                             .then(()=> {
                               doDownload(path,res)
                                   
-                            }).lean();
+                            })
                     }else{
                         res.send({success: resp})
                     }
                
                 }
-            }).sort({ updatedAt:-1, createdAt: -1, }, )
+            }).sort({ updatedAt:-1, createdAt: -1, }, ).lean();
         }
 
     }else{
