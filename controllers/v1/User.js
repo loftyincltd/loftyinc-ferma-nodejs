@@ -471,6 +471,9 @@ exports.createUser = function(req, res, next) {
         u.bank = userData.bank;
         u.account = userData.account;
         u.account_name = userData.account_name;
+        if(userData.dob){
+            u.dob = new Date(userData.dob)
+        }
     
        
         if(!user.super){
