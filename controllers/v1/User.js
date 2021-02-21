@@ -831,9 +831,13 @@ exports.getUsers = function(req, res, next){
                               {id: 'bank', title: 'Bank Name'},
                               {id: 'account', title: 'Account Number'},
                               {id: 'account_name', title: 'Account Name'},
+                              {id: 'nin', title: 'Nin'},
 
                             ]
                           });
+                          resp.forEach((r)=>{
+                            r.dob = moment(r.dob).format("YYYY-MM-DD")
+                          })
                           csvWriter
                            .writeRecords(resp)
                             .then(()=> {
