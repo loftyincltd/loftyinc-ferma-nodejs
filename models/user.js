@@ -34,7 +34,7 @@ var userSchema = mongoose.Schema({
         required: '{PATH} is required!',
         lowercase:true,
         trim:true,
-        unique: true
+        unique: true, sparse: true
     },
     phone: {type:String,},
     bvn: {type:String,},
