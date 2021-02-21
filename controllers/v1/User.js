@@ -469,6 +469,7 @@ exports.createUser = function(req, res, next) {
         u.lga = userData.lga;
         u.occupation= userData.occupation
         u.bank = userData.bank;
+        u.gender= userData.gender;
         u.account = userData.account;
         u.account_name = userData.account_name;
         if(userData.dob){
