@@ -838,14 +838,13 @@ exports.getUsers = function(req, res, next){
                           });
                           resp.forEach((r)=>{
                             r.dob = moment(r.dob).format("YYYY-MM-DD")
-                            console.log(r.dob);
                           })
                           csvWriter
                            .writeRecords(resp)
                             .then(()=> {
                               doDownload(path,res)
                                   
-                            });
+                            }).lean();
                     }else{
                         res.send({success: resp})
                     }
