@@ -230,32 +230,15 @@ exports.getProject= function(req, res){
  *         description: Invalid Request
  */
 exports.getProjects = function(req, res, next){
-    const limit= parseInt(req.query['limit'], 10)||10;
-    const skip = parseInt(req.query['skip'], 10)||0;
-    const count = req.query['count'];
-    const all = req.query['all'];
-    const mine = req.query['mine'];
-    const user_id = req.query['user_id'];
+   
+
     const user = req.user ? req.user.data: {};
     if(user && user._id){
-       let q={deleted: false, fixed};
-       if(mine){
-           q.creator_id = user._id
-       }
-       if(user_id && validAdmin(user)){
-           q.creator_id = user_id;
-       }
+       let q={deleted: false, };
+       
     
-        if(count){
-            Project.countDocuments(q, function(err, resp){
-                if(err){
-                    res.send({error:err});
-                } else{
-                    res.send({count: resp})
-                }
-            })
-        } else {
-            if(all){
+     
+         
                 Project.find(q,{ description:1 , title: 1},{}, function(err, resp){
                         if(err){
                             res.send({error:err});
@@ -263,17 +246,9 @@ exports.getProjects = function(req, res, next){
                             res.send({success: resp})
                         }
                     }).sort({updatedAt:-1,createdAt: -1, });
-            } else{
-                Project.find(q,{description:1 , title: 1},{}, function(err, resp){
-                        if(err){
-                            res.send({error:err});
-                        } else{
-                            res.send({success: resp})
-                        }
-                    }).limit(limit).skip(skip).sort({updatedAt:-1,createdAt: -1, });
-            }
             
-        }
+            
+        
 
     }else{
         res.status(403).send({error:'Invalid Request'});
