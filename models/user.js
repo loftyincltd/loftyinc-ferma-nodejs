@@ -31,7 +31,6 @@ var userSchema = mongoose.Schema({
     last_name: {type:String, required:'{PATH} is required!'},
     username: {
         type: String,
-        required: '{PATH} is required!',
         lowercase:true,
         trim:true,                
         unique: true, sparse: true
