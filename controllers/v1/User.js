@@ -819,14 +819,23 @@ exports.getUsers = function(req, res, next){
                         const csvWriter = createCsvWriter({
                             path,
                             header: [
-                              {id: 'name', title: 'Name'},
-                              {id: 'surname', title: 'Surname'},
-                              {id: 'age', title: 'Age'},
+                              {id:'first_name', title: 'Name'},
+                              {id: 'last_name', title: 'Surname'},
+                              {id: 'dob', title: 'Date of Birth'},
                               {id: 'gender', title: 'Gender'},
+                              {id: 'phone', title: 'Phone Number'},
+                              {id: 'state', title: 'State'},
+                              {id: 'district', title: 'District'},
+                              {id: 'lga', title: 'LGA'},
+                              {id: 'occupation', title: 'Occupation'},
+                              {id: 'bank', title: 'Bank Name'},
+                              {id: 'account', title: 'Account Number'},
+                              {id: 'account_name', title: 'Account Name'},
+
                             ]
                           });
                           csvWriter
-                           .writeRecords(data)
+                           .writeRecords(resp)
                             .then(()=> {
                               doDownload()
                                   
