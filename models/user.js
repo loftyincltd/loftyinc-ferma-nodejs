@@ -72,7 +72,6 @@ var userSchema = mongoose.Schema({
     timestamps: true,
 });
 userSchema.index({first_name: 'text',last_name: 'text', phone:'text', username: 'text' });
-userSchema.index({ email: 1, type: 1,  beneficent_id:1 }, { unique: true });
 userSchema.methods = {
     authenticate: function(passwordToMatch) {
         return bcrypt.hashSync( passwordToMatch, this.salt) === this.hashed_pwd;
