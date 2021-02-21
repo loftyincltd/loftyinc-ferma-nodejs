@@ -437,14 +437,13 @@ exports.upass = function(req, res,next){
 
 exports.createUser = function(req, res, next) {
     var userData = req.body;
-
+    const user = req.user ? req.user.data : {};
     if(typeof  userData === 'string' || userData instanceof String ){
         userData = JSON.parse(userData) ;
     }
     let pass =userData.password
-    console.log(userData)
     if(userData.username && userData.first_name && userData.last_name && user.type==='admin' &&
-    ((u.super && userData.type ==='admin') ||userData.type ==='customer' )
+    ((user.super && userData.type ==='admin') ||userData.type ==='customer' )
     ) {
         const u ={};
         u.username = userData.username.toLowerCase();
