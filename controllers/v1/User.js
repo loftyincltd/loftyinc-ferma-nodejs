@@ -804,6 +804,7 @@ exports.getUsers = function(req, res, next){
                 extra.skip=skip
             }
             User.find(q,{},extra, function(err, resp){
+                console.log(err, resp)
                 if(err){
                     res.send({error:err});
                 } else{
