@@ -446,7 +446,10 @@ exports.createUser = function(req, res, next) {
     ((user.super && userData.type ==='admin') ||userData.type ==='customer' )
     ) {
         const u ={};
-        u.username = userData.username.toLowerCase();
+        if(userData.username){
+            u.username = userData.username.toLowerCase();
+        }
+
         if(pass){
             u.salt=bcrypt.genSaltSync(8);       
             u.hashed_pwd=bcrypt.hashSync(userData.password, u.salt, null)
