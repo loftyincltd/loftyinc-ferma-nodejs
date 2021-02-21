@@ -80,7 +80,7 @@ userSchema.methods = {
 
 };
 var User = mongoose.model('User', userSchema);
-
+ 
 userSchema.pre("save", function(next) {
     if((this.email_verified && this.bvn_verified)&& !this.verified){
        this.verified = true;

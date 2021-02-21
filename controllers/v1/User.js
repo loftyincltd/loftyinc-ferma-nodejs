@@ -22,7 +22,7 @@ function createToken(user, exp) {
     const dat = {
         exp: exp|| Math.floor(Date.now() / 1000) + (60 * 60),
         data: pick(user)
-    }
+    }                 
     return jwt.sign(dat, config.secret,);
 }
 function pick(user){
@@ -483,21 +483,7 @@ exports.createUser = function(req, res, next) {
 
                 res.status(400).send({error:err.toString()});
             } else{
-                let tSend =  pick(user);
-                let extra = (60 * 60 * 24 * 365 * 1000 );
-                const exp = Math.floor(Date.now() / 1000) + extra;
-               var token = createToken(tSend, exp);
-                var ciphertext = CryptoJS.AES.encrypt(token, config.secret);
-               res.send({user_token: ciphertext.toString()
-              ,user:
-               tSend
-              });
-                forgot.addusername(user.username,userData.type||'customer');
-                if(userData.device_type && userData.push_id){
-                    user.device_type=userData.device_type;
-                    user.push_id = userData.push_id;
-                    user.save();
-                }
+                return ({success: true})
             }
 
         });
