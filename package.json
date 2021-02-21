@@ -18,6 +18,7 @@
     "express-jwt": "^6.0.0",
     "lodash": "^4.17.20",
     "mkdirp": "^1.0.4",
+    "moment": "^2.29.1",
     "mongoose": "^5.11.17",
     "morgan": "^1.10.0",
     "sticky-session": "^1.1.2",

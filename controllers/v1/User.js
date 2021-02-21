@@ -4,6 +4,7 @@ const User = require('mongoose').model('User');
 const Log = require('mongoose').model('Log');
 const bcrypt   = require('bcrypt-nodejs');
 const jwt     = require('jsonwebtoken');
+const moment = require('moment')
 const _       = require('lodash');
 var CryptoJS = require("crypto-js");
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
