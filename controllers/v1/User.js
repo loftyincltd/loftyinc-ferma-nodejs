@@ -441,14 +441,17 @@ exports.createUser = function(req, res, next) {
     if(typeof  userData === 'string' || userData instanceof String ){
         userData = JSON.parse(userData) ;
     }
-    let pass =userData.password||nid();
-    if(userData.username && userData.first_name && userData.last_name && pass && user.type==='admin' &&
+    let pass =userData.password
+    if(userData.username && userData.first_name && userData.last_name && user.type==='admin' &&
     ((u.super && userData.type ==='admin') || u.type ==='customer' )
     ) {
         const u ={};
         u.username = userData.username.toLowerCase();
-        u.salt=bcrypt.genSaltSync(8);       
+        if(pass){
+            u.salt=bcrypt.genSaltSync(8);       
             u.hashed_pwd=bcrypt.hashSync(userData.password, u.salt, null)
+        }
+      
         
 
             u.type = userData.type||'customer'  
