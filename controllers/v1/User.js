@@ -442,7 +442,7 @@ exports.createUser = function(req, res, next) {
         userData = JSON.parse(userData) ;
     }
     let pass =userData.password
-    if(userData.username && userData.first_name && userData.last_name && user.type==='admin' &&
+    if(userData.first_name && userData.last_name && user.type==='admin' &&
     ((user.super && userData.type ==='admin') ||userData.type ==='customer' )
     ) {
         const u ={};
@@ -458,12 +458,13 @@ exports.createUser = function(req, res, next) {
         u.first_name =userData.first_name;
         u.last_name =userData.last_name;
         u.phone =userData.phone;
+        u.address =userData.address;
         u.gender =userData.gender;
         u.bvn = userData.bvn;
         u.nin = userData.nin;
         u.state = userData.state;
         u.lga = userData.lga;
-        u.organization = userData.organization
+        u.occupation= userData.occupation
         u.bank = userData.bank;
         u.account = userData.account;
         u.account_name = userData.account_name;
@@ -788,7 +789,6 @@ exports.getUsers = function(req, res, next){
         if(qs){
             q ['$text']= {$search: qs}
         }
-        console.log(q)
         if(count){
             User.countDocuments(q, function(err, resp){
                 if(err){
