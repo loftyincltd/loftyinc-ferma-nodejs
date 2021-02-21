@@ -759,6 +759,7 @@ exports.getUsers = function(req, res, next){
     const limit= parseInt(req.query['limit'], 10)||10;
     const skip = parseInt(req.query['skip'], 10)||0;
     const count = req.query['count'];
+    const all = req.query['all'];
     let type = req.query['type']||'customer'; 
     let state = req.query['state'];
     let district = req.query['district'];
@@ -790,7 +791,7 @@ exports.getUsers = function(req, res, next){
             })
         } else {
             const extra ={sort:{createdAt: -1, updatedAt:-1},};
-            if(!download){
+            if(!download && all){
                 extra.limit=limit;
                 extra.skip=skip
             }
@@ -820,7 +821,7 @@ exports.getUsers = function(req, res, next){
                     }
                
                 }
-            }).sort({ updatedAt:-1, createdAt: -1, }, ).limit(limit).skip(skip);
+            }).sort({ updatedAt:-1, createdAt: -1, }, )
         }
 
     }else{
