@@ -53,6 +53,7 @@ var userSchema = mongoose.Schema({
     bvn_verified:{type:Boolean,required:'{PATH} is required!',default:false},
     id_verified:{type:Boolean,required:'{PATH} is required!',default:false},
     super:{type:Boolean,required:'{PATH} is required!',default:false},
+    fingerprint:{type:Boolean,required:'{PATH} is required!',default:false},
     verified:{type:Boolean,required:'{PATH} is required!',default:false},
     deleted:{type:Boolean,required:'{PATH} is required!',default:false},
     state: {type:String, enum:['ABIA','AKWA IBOM','ADAMAWA','ANAMBRA' 

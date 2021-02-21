@@ -759,6 +759,7 @@ exports.getUsers = function(req, res, next){
     const limit= parseInt(req.query['limit'], 10)||10;
     const skip = parseInt(req.query['skip'], 10)||0;
     const count = req.query['count'];
+    let qs =req.query['q'];
     const all = req.query['all'];
     let type = req.query['type']||'customer'; 
     let state = req.query['state'];
@@ -768,6 +769,9 @@ exports.getUsers = function(req, res, next){
     if(!user.super){
        state = user.state;
        district = user.district;
+    }
+    if(qs){
+        qs= qs.trim();
     }
 
     if(validAdmin(user)){
@@ -781,6 +785,9 @@ exports.getUsers = function(req, res, next){
           
        
         q.type= type;
+        if(qs){
+            qs ['$text']= {$search: qs}
+        }
         if(count){
             User.countDocuments(q, function(err, resp){
                 if(err){
