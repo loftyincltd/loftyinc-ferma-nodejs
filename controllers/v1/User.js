@@ -337,7 +337,7 @@ exports.upass = function(req, res,next){
         userData = JSON.parse(userData) ;
     }
     const u = req.user ? req.user.data: {};
-    console.log(userData)
+    
     User.findOne({_id: u._id},function(err,user){
         // bcrypt.compare()
         if(err){
@@ -362,6 +362,7 @@ exports.upass = function(req, res,next){
                             user.salt=bcrypt.genSaltSync(8);
                             user.hashed_pwd=bcrypt.hashSync(userData.password, u.salt, null);
                             user.save(function(err,resp2){
+                                console.log(err);
                                 if(err){
                                     res.status(500).send({error: err});
                                 } else{
