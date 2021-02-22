@@ -46,7 +46,7 @@ var userSchema = mongoose.Schema({
     salt: {type:String},
     hashed_pwd: {type:String},
     type:{type:String,required:'{PATH} is required!', default:'customer', enum:['customer','admin'], trim: true},
-    gender:{type:String,required:'{PATH} is required!', enum:['male','female'], trim: true},
+    gender:{type:String, enum:['male','female'], trim: true},
     address:{type:String },
     occupation: {type:String,},
     dob:{type:Date },
