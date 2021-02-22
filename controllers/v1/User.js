@@ -480,16 +480,14 @@ exports.createUser = function(req, res, next) {
         }
     
        
-        if(!user.super){
+          if(!user.super){
             u.state = user.state;
-            u.district = user.destrict
-           }else{
-            u.district = userData.district ;
-            u.state = userData.state ;
+            u.district = user.district
            }
+
+           console.log(u);
       
         User.create(u, function(err, user) {
-            console.log(err)
             if(err) {
                 if(err.toString().indexOf('E11000') > -1) {
 
