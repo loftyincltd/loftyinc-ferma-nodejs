@@ -300,7 +300,7 @@ exports.getSingleUserPhone=function(req, res, next){
 
 /**
  * @swagger
- * /v1/auth/user/change_pass:
+ * /v1/auth/user/changePass:
  *   post:
  *     tags:
  *       - Users
@@ -337,6 +337,7 @@ exports.upass = function(req, res,next){
         userData = JSON.parse(userData) ;
     }
     const u = req.user ? req.user.data: {};
+    console.log(userData)
     User.findOne({_id: u._id},function(err,user){
         // bcrypt.compare()
         if(err){
