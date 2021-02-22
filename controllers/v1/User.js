@@ -29,7 +29,7 @@ function createToken(user, exp) {
 function pick(user){
     return _.pick(user, 'type','relation','death_certificate','super','usergroup_id','admin_id', 'deleted', 'address','bvn','verified','username_verified','bvn_verified','username','phone','first_name','last_name','middle_name','_id','relation','company_id', 'plan','picture','payment_active','address', 'security_questions',
     'security_answers', 'bvn','lawyer_id','beneficent_id','beneficent_deceased', 'occupation','rating', 'plan', 'payment_due','last_login','gender','credit', 'location_privacy','tags'
-    ,'location','available','skip_help', 'skip_danger_zone', 'help_radius','danger_radius');
+    ,'location','available','skip_help', 'skip_danger_zone', 'help_radius','danger_radius','state', 'district');
 }
 const validUser= function (u){
    return ( (u.type==='customer') && u.deleted ===false )
@@ -460,7 +460,7 @@ exports.createUser = function(req, res, next) {
       
         
 
-            u.type = userData.type||'customer'  
+        u.type = userData.type||'customer'  
         u.first_name =userData.first_name;
         u.last_name =userData.last_name;
         u.phone =userData.phone;
@@ -479,7 +479,7 @@ exports.createUser = function(req, res, next) {
             u.dob = new Date(userData.dob)
         }
     
-       
+         console.log(user);
           if(!user.super){
             u.state = user.state;
             u.district = user.district
