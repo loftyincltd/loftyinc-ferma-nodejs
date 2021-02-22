@@ -15,7 +15,7 @@ const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 const path = require('path');
 
 const select = {
-    first_name:1,last_name:1,middle_name:1,_id:1,profile_pic: 1,username:1, phone:1, gender:1, rating:1, available:1, picture:1,location_privacy:1
+    first_name:1,last_name:1,middle_name:1,_id:1,profile_pic: 1,username:1, phone:1, gender:1, rating:1, available:1, picture:1,location_privacy:1, state:1, district:1
 }
 
 
@@ -478,8 +478,7 @@ exports.createUser = function(req, res, next) {
         if(userData.dob){
             u.dob = new Date(userData.dob)
         }
-    
-         console.log(user);
+
           if(!user.super){
             u.state = user.state;
             u.district = user.district
@@ -628,9 +627,7 @@ exports.updateUser = function(req, res) {
                 if(userUpdates.account_name ){
                     user1.account_name  = userUpdates.account_name ;
                 }
-                u.account = userData.account;
-                u.account_name = userData.account_name;
-            
+             
                
                 if(!user.super){
                     u.state = user.state;
@@ -646,39 +643,12 @@ exports.updateUser = function(req, res) {
                 if(userUpdates.gender){
                     user1.gender = userUpdates.gender;
                 }
-                if(userUpdates.location_privacy!= undefined){
-                    user1.location_privacy = userUpdates.location_privacy;
-                }
-                if(userUpdates.skip_danger_zone!= undefined){
-                    user1. skip_danger_zone = userUpdates. skip_danger_zone;
-                }
-                if(userUpdates.skip_help!= undefined){
-                    user1.skip_help = userUpdates.skip_help
-                }
-                if(userUpdates.available == true|| userUpdates.available == false){
-                    user1.available = userUpdates.available? true: false;
-                }
-                if(userUpdates.danger_radius){
-                    user1.danger_radius = uerUpdates.danger_radius;
-                }
-                if(userUpdates.help_radius){
-                    user1.help_radius = userUpdates.help_radius;
-                }
-                if(userUpdates.tags){
-                    user1.tags = userUpdates.tags;
-                }
-                if(userUpdates.device_type && userUpdates.push_id){
-                    user1.device_type=userUpdates.device_type;
-                    user1.push_id = userUpdates.push_id;
-                }
-              
              
-                if(userUpdates.longitude && userUpdates.latitude){
-                    user1.location =  {type: "Point",
-                    coordinates: [userUpdates.longitude,  userUpdates.latitude ]
-                }
+               
+             
+                
                     
-                }
+                
                 user1.save(function(err2, user2){
                     if(err2){
                         res.send({error: err2});
@@ -772,6 +742,7 @@ exports.getUsers = function(req, res, next){
     let type = req.query['type']||'customer'; 
     let state = req.query['state'];
     let district = req.query['district'];
+    let occupation = req.query['occupation'];
     const download = req.query['download'];
     const user = req.user ? req.user.data: {};
     if(!user.super){
