@@ -485,7 +485,6 @@ exports.createUser = function(req, res, next) {
             u.district = user.district
            }
 
-           console.log(u);
       
         User.create(u, function(err, user) {
             if(err) {
