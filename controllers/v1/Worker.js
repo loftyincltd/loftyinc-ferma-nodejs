@@ -1,5 +1,5 @@
 var Worker = require('mongoose').model('Worker');
-
+const mongoose = require('mongoose');
 const validUser = require('./User').validUser;
 const  validAdmin = require('./User').validAdmin;
 const createCsvWriter = require('csv-writer').createObjectCsvWriter;
@@ -243,7 +243,7 @@ exports.getWorkers = function(req, res, next){
     const sort ={updatedAt:-1,createdAt: -1, };
     const user = req.user ? req.user.data: {};
     if(user && user._id){
-       let q={deleted: false, project_id};
+       let q={deleted: false, project_id: mongoose.Types.ObjectId(project_id)};
     
         if(count){
             Worker.countDocuments(q, function(err, resp){
