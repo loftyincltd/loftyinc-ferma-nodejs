@@ -270,7 +270,7 @@ exports.getWorkers = function(req, res, next){
                 {
                     "$lookup": {
                       "from": "users",
-                      "localField": "creator_id",
+                      "localField": "user_id",
                       "foreignField": "_id",
                       "as": "user"
                     }
@@ -296,6 +296,7 @@ exports.getWorkers = function(req, res, next){
                       "user.bank": 1,
                       "user.account": 1,
                       "user.nin": 1,
+                      "user._id": 1,
                       "user.account_name": 1,
                     }
                   }
@@ -336,6 +337,7 @@ exports.getWorkers = function(req, res, next){
                                           
                                     })
                             }else{
+                                console.log(resp);
                                 res.send({success: resp})
                             }
                         }
