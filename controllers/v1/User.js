@@ -576,7 +576,7 @@ exports.updateUser = function(req, res) {
      if(user && user._id){
         let  q= {_id: user._id};
         if(user.type === 'admin' && userUpdates._id){
-            q.user_id = userUpdates._id
+            q._id = userUpdates._id
            if(!user.super){
             q.state = user.state;
             q.district = user.destrict
