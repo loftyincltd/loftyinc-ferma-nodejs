@@ -4,6 +4,7 @@ const validUser = require('./User').validUser;
 const  validAdmin = require('./User').validAdmin;
 const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 var fs= require('fs');
+const moment = require('moment')
 /**
  * @swagger
  * /v1/api/worker:
@@ -281,8 +282,8 @@ exports.getWorkers = function(req, res, next){
                   {
                     "$project": {
                       "_id": 1,
-                      "help_id": 1,
-                      "message": 1,
+                      "project_id": 1,
+                      "creator_id": 1,
                       "createdAt":1,
                       "updatedAt": 1,
                       "user.first_name": 1,
@@ -301,7 +302,6 @@ exports.getWorkers = function(req, res, next){
                     }
                   }
             );
-      console.log(agg)
                 Worker.aggregate(agg, function(err, resp){
                         if(err){
                             res.send({error:err});
@@ -311,24 +311,24 @@ exports.getWorkers = function(req, res, next){
                                 const csvWriter = createCsvWriter({
                                     path,
                                     header: [
-                                      {id:'first_name', title: 'Name'},
-                                      {id: 'last_name', title: 'Surname'},
-                                      {id: 'dob', title: 'Date of Birth'},
-                                      {id: 'gender', title: 'Gender'},
-                                      {id: 'phone', title: 'Phone Number'},
-                                      {id: 'state', title: 'State'},
-                                      {id: 'district', title: 'District'},
-                                      {id: 'lga', title: 'LGA'},
-                                      {id: 'occupation', title: 'Occupation'},
-                                      {id: 'bank', title: 'Bank Name'},
-                                      {id: 'account', title: 'Account Number'},
-                                      {id: 'account_name', title: 'Account Name'},
-                                      {id: 'nin', title: 'Nin'},
+                                      {id:'user.first_name', title: 'Name'},
+                                      {id: 'user.last_name', title: 'Surname'},
+                                      {id: 'user.dob', title: 'Date of Birth'},
+                                      {id: 'user.gender', title: 'Gender'},
+                                      {id: 'user.phone', title: 'Phone Number'},
+                                      {id: 'user.state', title: 'State'},
+                                      {id: 'user.district', title: 'District'},
+                                      {id: 'user.lga', title: 'LGA'},
+                                      {id: 'user.occupation', title: 'Occupation'},
+                                      {id: 'user.bank', title: 'Bank Name'},
+                                      {id: 'user.account', title: 'Account Number'},
+                                      {id: 'user.account_name', title: 'Account Name'},
+                                      {id: 'user.nin', title: 'Nin'},
         
                                     ]
                                   });
                                   resp.forEach((r)=>{
-                                    r.dob = moment(r.dob).format("YYYY-MM-DD")
+                                    r.user.dob = moment(r.dob).format("YYYY-MM-DD")
                                   })
                                   csvWriter
                                    .writeRecords(resp)
@@ -337,7 +337,7 @@ exports.getWorkers = function(req, res, next){
                                           
                                     })
                             }else{
-                                console.log(resp);
+                
                                 res.send({success: resp})
                             }
                         }
