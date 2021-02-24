@@ -762,7 +762,7 @@ exports.getUsers = function(req, res, next){
        
         q.type= type;
         if(qs){
-            q ['$text']= {$search:  { $regex: new RegExp("^" + qs.toLowerCase(), "i") }}
+            q ['$text']= {$search: qs}
         }
         if(count){
             User.countDocuments(q, function(err, resp){
