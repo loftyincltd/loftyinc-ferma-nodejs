@@ -3,7 +3,7 @@ var Worker = require('mongoose').model('Worker');
 const validUser = require('./User').validUser;
 const  validAdmin = require('./User').validAdmin;
 const createCsvWriter = require('csv-writer').createObjectCsvWriter;
-
+var fs= require('fs');
 /**
  * @swagger
  * /v1/api/worker:
