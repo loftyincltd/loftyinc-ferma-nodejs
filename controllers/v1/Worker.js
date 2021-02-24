@@ -335,7 +335,7 @@ exports.getWorkers = function(req, res, next){
                                   }
                                  
                                   csvWriter
-                                   .writeRecords(resp)
+                                   .writeRecords(all)
                                     .then(()=> {
                                       doDownload(path,res)
                                           
