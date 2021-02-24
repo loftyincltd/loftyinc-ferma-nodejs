@@ -239,6 +239,7 @@ exports.getWorkers = function(req, res, next){
     let district = req.query['district'];
     let occupation = req.query['occupation'];
     const download = req.query['download'];
+    const sort ={updatedAt:-1,createdAt: -1, };
     const user = req.user ? req.user.data: {};
     if(user && user._id){
         if(!user.super){
