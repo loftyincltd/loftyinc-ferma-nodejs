@@ -579,7 +579,7 @@ exports.updateUser = function(req, res) {
             q._id = userUpdates._id
            if(!user.super){
             q.state = user.state;
-            q.district = user.destrict
+            q.district = user.district
            }
         }
          User.findOne(q, function(err, user1){
