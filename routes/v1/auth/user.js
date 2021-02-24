@@ -12,7 +12,7 @@ var router = app.Router();
 router.post('/signup', controllers.User.createUser);
 router.post('/changePass', controllers.User.upass);
 
-router.post('/', controllers.User.updateUser);
+router.put('/', controllers.User.updateUser);
 
 router.get('/all',   controllers.User.getUsers);
 router.get('/search',   controllers.User.searchUser);
