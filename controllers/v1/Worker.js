@@ -311,25 +311,29 @@ exports.getWorkers = function(req, res, next){
                                 const csvWriter = createCsvWriter({
                                     path,
                                     header: [
-                                      {id:'user.first_name', title: 'Name'},
-                                      {id: 'user.last_name', title: 'Surname'},
-                                      {id: 'user.dob', title: 'Date of Birth'},
-                                      {id: 'user.gender', title: 'Gender'},
-                                      {id: 'user.phone', title: 'Phone Number'},
-                                      {id: 'user.state', title: 'State'},
-                                      {id: 'user.district', title: 'District'},
-                                      {id: 'user.lga', title: 'LGA'},
-                                      {id: 'user.occupation', title: 'Occupation'},
-                                      {id: 'user.bank', title: 'Bank Name'},
-                                      {id: 'user.account', title: 'Account Number'},
-                                      {id: 'user.account_name', title: 'Account Name'},
-                                      {id: 'user.nin', title: 'Nin'},
+                                      {id:'first_name', title: 'Name'},
+                                      {id: 'last_name', title: 'Surname'},
+                                      {id: 'dob', title: 'Date of Birth'},
+                                      {id: 'gender', title: 'Gender'},
+                                      {id: 'phone', title: 'Phone Number'},
+                                      {id: 'state', title: 'State'},
+                                      {id: 'district', title: 'District'},
+                                      {id: 'lga', title: 'LGA'},
+                                      {id: 'occupation', title: 'Occupation'},
+                                      {id: 'bank', title: 'Bank Name'},
+                                      {id: 'account', title: 'Account Number'},
+                                      {id: 'account_name', title: 'Account Name'},
+                                      {id: 'nin', title: 'Nin'},
         
                                     ]
                                   });
-                                  resp.forEach((r)=>{
-                                    r.user.dob = moment(r.dob).format("YYYY-MM-DD")
-                                  })
+                                  const all =[];
+                                  for(var i=0;i<resp.length;i++){
+                                    const u = r.user
+                                    u.dob = moment(u.dob).format("YYYY-MM-DD")
+                                    all.push(u);
+                                  }
+                                 
                                   csvWriter
                                    .writeRecords(resp)
                                     .then(()=> {
