@@ -754,7 +754,7 @@ exports.getUsers = function(req, res, next){
              q.district = district;
            }
            if(occupation){
-               // case insensitve find
+               // case insensitve 
                q.occupation= { $regex: new RegExp("^" + occupation.toLowerCase(), "i") };
            }
           
@@ -762,7 +762,7 @@ exports.getUsers = function(req, res, next){
        
         q.type= type;
         if(qs){
-            q ['$text']= {$search: qs}
+            q ['$text']= {$search:  { $regex: new RegExp("^" + q.toLowerCase(), "i") }}
         }
         if(count){
             User.countDocuments(q, function(err, resp){
