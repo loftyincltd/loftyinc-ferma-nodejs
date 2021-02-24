@@ -753,6 +753,10 @@ exports.getUsers = function(req, res, next){
              q.state = state ;
              q.district = district;
            }
+           if(occupation){
+               // case insensitve find
+               q.occupation= { $regex: new RegExp("^" + occupation.toLowerCase(), "i") };
+           }
           
           
        
