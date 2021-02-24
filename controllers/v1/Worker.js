@@ -234,17 +234,18 @@ exports.getWorkers = function(req, res, next){
     const skip = parseInt(req.query['skip'], 10)||0;
     const count = req.query['count'];
     const all = req.query['all'];
-    const mine = req.query['mine'];
-    const user_id = req.query['user_id'];
+    const project_id = req.query['project_id'];
+    let state = req.query['state'];
+    let district = req.query['district'];
+    let occupation = req.query['occupation'];
+    const download = req.query['download'];
     const user = req.user ? req.user.data: {};
     if(user && user._id){
-       let q={deleted: false, fixed};
-       if(mine){
-           q.creator_id = user._id
-       }
-       if(user_id && validAdmin(user)){
-           q.creator_id = user_id;
-       }
+        if(!user.super){
+            state = user.state;
+            district = user.district;
+         }
+       let q={deleted: false, project_id};
     
         if(count){
             Worker.countDocuments(q, function(err, resp){
@@ -255,23 +256,93 @@ exports.getWorkers = function(req, res, next){
                 }
             })
         } else {
-            if(all){
-                Worker.find(q,{ project_id:1 , user_id: 1,},{}, function(err, resp){
-                        if(err){
-                            res.send({error:err});
-                        } else{
-                            res.send({success: resp})
-                        }
-                    }).sort({updatedAt:-1,createdAt: -1, });
-            } else{
-                Worker.find(q,{project_id:1 , user_id: 1},{}, function(err, resp){
-                        if(err){
-                            res.send({error:err});
-                        } else{
-                            res.send({success: resp})
-                        }
-                    }).limit(limit).skip(skip).sort({updatedAt:-1,createdAt: -1, });
+                        
+                         
+            let agg =[
+                { $match: q},
+                { $sort : sort },
+            
+           
+            ];
+            if(!all){
+                agg.push(   {$limit: skip+ limit},
+                    { $skip: skip },)
             }
+            agg.push(
+                {
+                    "$lookup": {
+                      "from": "users",
+                      "localField": "creator_id",
+                      "foreignField": "_id",
+                      "as": "user"
+                    }
+                  },
+                  {
+                    "$unwind": "$user"
+                  },
+                  {
+                    "$project": {
+                      "_id": 1,
+                      "help_id": 1,
+                      "message": 1,
+                      "createdAt":1,
+                      "updatedAt": 1,
+                      "user.first_name": 1,
+                      "user.last_name": 1,
+                      "user.dob": 1,
+                      "user.gender": 1,
+                      "user.phone": 1,
+                      "user.state": 1,
+                      "user.district": 1,
+                      "user.occupation": 1,
+                      "user.bank": 1,
+                      "user.account": 1,
+                      "user.nin": 1,
+                      "user.account_name": 1,
+                    }
+                  }
+            );
+            console.log(agg);
+                Worker.aggregate(agg, function(err, resp){
+                        if(err){
+                            res.send({error:err});
+                        } else{
+                            if(download){
+                                const path =new Date().getTime()+'_aa.csv';
+                                const csvWriter = createCsvWriter({
+                                    path,
+                                    header: [
+                                      {id:'first_name', title: 'Name'},
+                                      {id: 'last_name', title: 'Surname'},
+                                      {id: 'dob', title: 'Date of Birth'},
+                                      {id: 'gender', title: 'Gender'},
+                                      {id: 'phone', title: 'Phone Number'},
+                                      {id: 'state', title: 'State'},
+                                      {id: 'district', title: 'District'},
+                                      {id: 'lga', title: 'LGA'},
+                                      {id: 'occupation', title: 'Occupation'},
+                                      {id: 'bank', title: 'Bank Name'},
+                                      {id: 'account', title: 'Account Number'},
+                                      {id: 'account_name', title: 'Account Name'},
+                                      {id: 'nin', title: 'Nin'},
+        
+                                    ]
+                                  });
+                                  resp.forEach((r)=>{
+                                    r.dob = moment(r.dob).format("YYYY-MM-DD")
+                                  })
+                                  csvWriter
+                                   .writeRecords(resp)
+                                    .then(()=> {
+                                      doDownload(path,res)
+                                          
+                                    })
+                            }else{
+                                res.send({success: resp})
+                            }
+                        }
+                    })
+            
             
         }
 

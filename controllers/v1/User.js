@@ -774,7 +774,7 @@ exports.getUsers = function(req, res, next){
             })
         } else {
             const extra ={sort:{createdAt: -1, updatedAt:-1},};
-            if(!download && all){
+            if(!all){
                 extra.limit=limit;
                 extra.skip=skip
             }
