@@ -2,6 +2,7 @@ var Worker = require('mongoose').model('Worker');
 
 const validUser = require('./User').validUser;
 const  validAdmin = require('./User').validAdmin;
+const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 
 /**
  * @swagger
@@ -303,7 +304,7 @@ exports.getWorkers = function(req, res, next){
                     }
                   }
             );
-            console.log(agg);
+   
                 Worker.aggregate(agg, function(err, resp){
                         if(err){
                             res.send({error:err});
@@ -352,6 +353,30 @@ exports.getWorkers = function(req, res, next){
     }
 
     
+}
+const doDownload= function(path,res){
+
+
+    fs.readFile(path , 'utf8', function(err, data){
+        if (err){ 
+            res.send({error:err});
+        }
+        else{
+            res.set('Content-disposition', 'attachment; filename=file.csv');
+            res.set('Content-Type', 'text/csv');
+            res.download(path,path, (err)=>{
+                //CHECK FOR ERROR
+
+                fs.unlink(path, (err) => {
+                    if (err){ console.log(err)}
+                    else{
+                        // console.log('was deleted');
+                    }
+
+                });
+            });
+        }
+    });
 }
 /**
  * @swagger
