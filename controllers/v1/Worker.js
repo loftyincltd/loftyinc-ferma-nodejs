@@ -243,10 +243,6 @@ exports.getWorkers = function(req, res, next){
     const sort ={updatedAt:-1,createdAt: -1, };
     const user = req.user ? req.user.data: {};
     if(user && user._id){
-        if(!user.super){
-            state = user.state;
-            district = user.district;
-         }
        let q={deleted: false, project_id};
     
         if(count){
@@ -304,7 +300,7 @@ exports.getWorkers = function(req, res, next){
                     }
                   }
             );
-   
+      console.log(agg)
                 Worker.aggregate(agg, function(err, resp){
                         if(err){
                             res.send({error:err});
