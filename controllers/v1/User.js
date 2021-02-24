@@ -586,6 +586,7 @@ exports.updateUser = function(req, res) {
             if(err){
                 res.send({error: err});
             } else{
+                console.log(user1, userUpdates)
                  if(userUpdates.dob && !user1.dob){
                     user1.dob = typeof 
                     userUpdates.dob === 'object' ? userData.dob
