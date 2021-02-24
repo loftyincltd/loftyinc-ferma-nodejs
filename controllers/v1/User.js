@@ -575,8 +575,8 @@ exports.updateUser = function(req, res) {
     // const otp = req.query['otp'];
      if(user && user._id){
         let  q= {_id: user._id};
-        if(user.type === 'admin' && userUpdates.user_id){
-            q.user_id = userUpdates.user_id
+        if(user.type === 'admin' && userUpdates._id){
+            q.user_id = userUpdates._id
            if(!user.super){
             q.state = user.state;
             q.district = user.destrict
