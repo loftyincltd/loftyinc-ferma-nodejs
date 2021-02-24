@@ -615,11 +615,14 @@ exports.updateUser = function(req, res) {
                 if(userUpdates.lga){
                     user1.lga = userUpdates.lga;
                 }
-                if(userUpdates.organization){
-                    user1.organization = userUpdates.organization;
+                if(userUpdates.occupation){
+                    user1.occupation = userUpdates.occupation;
                 }
                 if(userUpdates.bank){
                     user1.bank = userUpdates.bank;
+                }
+                if(userUpdates.gender){
+                    user1.gender= userUpdates.gender;
                 }
                 if(userUpdates.account){
                     user1.account = userUpdates.account;
@@ -654,15 +657,7 @@ exports.updateUser = function(req, res) {
                         res.send({error: err2});
                     } else{
                       
-                        let tSend =  pick(user2);
-                        let extra = (60 * 60 * 24 * 365 * 1000 );
-                        const exp = Math.floor(Date.now() / 1000) + extra;
-                       var token = createToken(tSend, exp);
-                        var ciphertext = CryptoJS.AES.encrypt(token, config.secret);
-                       res.send({user_token: ciphertext.toString()
-                      ,user:
-                       tSend
-                      });
+                        res.send ({success: true})
                        
                     }
                 })
