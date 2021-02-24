@@ -27,6 +27,7 @@ deleted:{type:Boolean,required:'{PATH} is required!',default:false},
 {
     timestamps: true,
 });
+workerSchema.index({ user_id: 1, project_id: 1 }, { unique: true });
 workerSchema.pre("save", function(next) {
     next();
 });
