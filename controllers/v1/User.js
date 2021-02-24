@@ -621,9 +621,6 @@ exports.updateUser = function(req, res) {
                 if(userUpdates.bank){
                     user1.bank = userUpdates.bank;
                 }
-                if(userUpdates.gender){
-                    user1.gender= userUpdates.gender;
-                }
                 if(userUpdates.account){
                     user1.account = userUpdates.account;
                 }
@@ -636,8 +633,8 @@ exports.updateUser = function(req, res) {
                     user1.state = user.state;
                     user1.district = user.destrict
                    }else{
-                    user1.district = userData.district ;
-                    user1.state = userData.state ;
+                    user1.district =  userUpdates.district ;
+                    user1.state =  userUpdates.state ;
                    }
               
                 if(userUpdates.bvn){
