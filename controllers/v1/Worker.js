@@ -418,8 +418,8 @@ exports.removeWorker = function(req,res) {
                  res.send({error: err})
                }else{
                    if(resp && resp._id){
-                    resp.deleted=true;
-                    resp.save((err2, resp2)=>{
+                   
+                    resp.remove((err2, resp2)=>{
                         if(err2){
                           res.send({error: err2})
                         } else{
