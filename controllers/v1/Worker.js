@@ -329,7 +329,7 @@ exports.getWorkers = function(req, res, next){
                                   });
                                   const all =[];
                                   for(var i=0;i<resp.length;i++){
-                                    const u = r.user
+                                    const u = resp[i].user
                                     u.dob = moment(u.dob).format("YYYY-MM-DD")
                                     all.push(u);
                                   }
