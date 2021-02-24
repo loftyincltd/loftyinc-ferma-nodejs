@@ -633,11 +633,11 @@ exports.updateUser = function(req, res) {
              
                
                 if(!user.super){
-                    u.state = user.state;
-                    u.district = user.destrict
+                    user1.state = user.state;
+                    user1.district = user.destrict
                    }else{
-                    u.district = userData.district ;
-                    u.state = userData.state ;
+                    user1.district = userData.district ;
+                    user1.state = userData.state ;
                    }
               
                 if(userUpdates.bvn){
