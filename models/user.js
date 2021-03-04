@@ -49,6 +49,7 @@ var userSchema = mongoose.Schema({
     gender:{type:String, enum:['male','female'], trim: true},
     address:{type:String },
     occupation: {type:String,},
+    fingerprint_fmd: {type:String,},
     dob:{type:Date },
     bvn_verified:{type:Boolean,required:'{PATH} is required!',default:false},
     id_verified:{type:Boolean,required:'{PATH} is required!',default:false},

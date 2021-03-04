@@ -628,6 +628,9 @@ exports.updateUser = function(req, res) {
                 if(userUpdates.account_name ){
                     user1.account_name  = userUpdates.account_name ;
                 }
+                if(userUpdates. fingerprint_fmd){
+                    user1. fingerprint_fmd = userUpdates. fingerprint_fmd
+                }
              
                
                 if(!user.super){
