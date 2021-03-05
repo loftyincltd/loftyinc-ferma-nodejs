@@ -496,7 +496,13 @@ exports.createUser = function(req, res, next) {
 
                 res.status(400).send({error:err.toString()});
             } else{
-                res.send ({success: true})
+                //res.send ({success: true})
+                if(!userData.fingerprint){
+                            res.send ({success: true})
+                        } else{
+                            userData.user_id  = user2._id;
+                            fprint(userUpdates)
+                        }
             }
 
         });
@@ -630,9 +636,7 @@ exports.updateUser = function(req, res) {
                 if(userUpdates.account_name ){
                     user1.account_name  = userUpdates.account_name ;
                 }
-                if(userUpdates. fingerprint_fmd){
-                    user1. fingerprint_fmd = userUpdates. fingerprint_fmd
-                }
+               
              
                
                 if(!user.super){
@@ -659,8 +663,13 @@ exports.updateUser = function(req, res) {
                     if(err2){
                         res.send({error: err2});
                     } else{
-                      
-                        res.send ({success: true})
+                        if(!userUpdates.fingerprint){
+                            res.send ({success: true})
+                        } else{
+                            userUpdates.user_id  = user2._id;
+                            fprint(userUpdates)
+                        }
+                       
                        
                     }
                 })
@@ -711,61 +720,8 @@ exports.updateUserFingerprint = function(req, res) {
     // const otp = req.query['otp'];
      if(user && user._id &&  userUpdates.fingerprint && userUpdates.user_id){
 
-        let url =  userUpdates.fingerprint.replace(/^data:image\/\w+;base64,/, "");
-let buffer = Buffer.from(url, 'base64');
-
-Jimp.read(buffer).then(img => {
-	 img.greyscale().getBuffer(Jimp.MIME_TIFF, function(err, buffer){
-        if(err){
-            res.send({error:err})
-        }else{
-            if(buffer){
-                const q={
-                    creator_id: userUpdates.user_id,
-                    right: true, 
-                    type:'image/tiff',
-                    finger:'thumb'
-                };
-                Fingerprint.findOne(q, function(err, fingerprint){
-                    if(err){
-                        res.send({error:err})
-                    }else{
-                        if(fingerprint){
-                            fingerprint.data = buffer;
-
-                            fingerprint.save(function(err, fingerprint){
-                                if(err){
-                                    res.send({error: err})
-                                }else{
-                                    res.send({success: true});
-                                }
-                            })
-                        }else{
-                            q.data = buffer;
-                            const f = new Fingerprint(q);
-                            f.save(function(err, fingerprint){
-                                if(err){
-                                    res.send({error: err})
-                                }else{
-                                    res.send({success: true});
-                                }
-                            })
-                        }
-                    }
-                })
-            }else{
-                res.send({error:"Unable to generate buffer"})
-            }
-        }
-     })
-    
-    /*.getBase64(Jimp.AUTO, src => {
-		//console.log('src');
-	});**/
-}).catch(function(err) {
-	res.send({error:err})
-});
-       
+             
+       fprint(userUpdates, res);
            
        
 
@@ -773,7 +729,62 @@ Jimp.read(buffer).then(img => {
 
 };
 
-
+const fprint = function (userUpdates, res){
+    let url =  userUpdates.fingerprint.replace(/^data:image\/\w+;base64,/, "");
+    let buffer = Buffer.from(url, 'base64');
+    
+    Jimp.read(buffer).then(img => {
+         img.greyscale().getBuffer(Jimp.MIME_TIFF, function(err, buffer){
+            if(err){
+                res.send({error:err})
+            }else{
+                if(buffer){
+                    const q={
+                        creator_id: userUpdates.user_id,
+                        right: true, 
+                        type:'image/tiff',
+                        finger:'thumb'
+                    };
+                    Fingerprint.findOne(q, function(err, fingerprint){
+                        if(err){
+                            res.send({error:err})
+                        }else{
+                            if(fingerprint){
+                                fingerprint.data = buffer;
+    
+                                fingerprint.save(function(err, fingerprint){
+                                    if(err){
+                                        res.send({error: err})
+                                    }else{
+                                        res.send({success: true});
+                                    }
+                                })
+                            }else{
+                                q.data = buffer;
+                                const f = new Fingerprint(q);
+                                f.save(function(err, fingerprint){
+                                    if(err){
+                                        res.send({error: err})
+                                    }else{
+                                        res.send({success: true});
+                                    }
+                                })
+                            }
+                        }
+                    })
+                }else{
+                    res.send({error:"Unable to generate buffer"})
+                }
+            }
+         })
+        
+        /*.getBase64(Jimp.AUTO, src => {
+            //console.log('src');
+        });**/
+    }).catch(function(err) {
+        res.send({error:err})
+    });
+}
 
 /**
  * @swagger
