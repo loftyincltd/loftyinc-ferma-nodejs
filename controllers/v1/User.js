@@ -895,8 +895,8 @@ exports.getUsers = function(req, res, next){
                 if(err){
                     res.send({error:err});
                 } else{
-                    console.log(download)
                     if(download){
+                        console.log("hello")
                         const path =new Date().getTime()+'_aa.csv';
                         const csvWriter = createCsvWriter({
                             path,
