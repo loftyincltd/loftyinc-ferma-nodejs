@@ -5,6 +5,7 @@ mongoose.Promise = require('bluebird');
 require('../models/log');
 require('../models/project');
 require('../models/worker');
+require('../models/fingerprint');
 var user=require('../models/user');
 
 

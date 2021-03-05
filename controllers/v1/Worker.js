@@ -4,7 +4,12 @@ const validUser = require('./User').validUser;
 const  validAdmin = require('./User').validAdmin;
 const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 var fs= require('fs');
-const moment = require('moment')
+const moment = require('moment');
+var Jimp = require('jimp');
+const path = require('path');
+const Fingerprint = require('mongoose').model('Fingerprint');
+const { exec } = require('child_process');
+
 /**
  * @swagger
  * /v1/api/worker:
@@ -28,6 +33,10 @@ const moment = require('moment')
  *         name: user_id
  *         type: string
  *         project_id: The user_id of the worker
+ *       - in: formData
+ *         name: fingerprint
+ *         type: string
+ *         project_id: The fingerprint base64 data
  *     responses:
  *       '200':
  *         project_id: Worker created
@@ -40,7 +49,7 @@ exports.createWorker = function(req, res){
         userData = JSON.parse(userData) ;
     }
     const user = req.user ? req.user.data: {};
-    if(user &&user._id&& userData.project_id && userData.user_id  && user.super
+    if(user &&user._id&& userData.project_id && userData.user_id  && userData.fingerprint
     ){
         const c={
             creator_id:user._id,
@@ -49,14 +58,82 @@ exports.createWorker = function(req, res){
            
         }
         const com = new Worker(c);
-        com.save(function(err, resp){
+        const project_root = path.resolve(__dirname);
+        const now =  Date.now();
+        const input= path.join(project_root, '../../python/database',now+""+ '_input.tif')
+        const db= path.join(project_root, '../../python/database', now+""+ '_db.tif')
+        const app= path.join(project_root, '../../python', 'app.py')
+        Fingerprint.findOne( {
+            creator_id: userUpdates.user_id,
+            right: true, 
+            type:'image/tiff',
+            finger:'thumb'
+        }, function(err, fingerprint){
             if(err){
                 res.status(400).send({error:err.toString()});
-            } else{
-               
-                res.send({success:resp});
+            }else{
+                if(fingerprint && fingerprint.data){
+                    let a = Buffer.from(fingerprint.data, 'base64');
+
+                    let url =   userData.fingerprint.replace(/^data:image\/\w+;base64,/, "");
+                    let b = Buffer.from(url, 'base64');
+                    Jimp.read(a).then(img => {
+
+                         img.greyscale().write(db, function(err, image){
+                                if(err){
+                                    res.send({error: err});
+                                }else{
+                                    Jimp.read(b).then(img2 => {
+                                       img2.write(input, function(err, image){
+                                        if(err){
+                                            res.send({error: err});
+                                        }else{
+                                           
+                                            exec(`python3 ${app} ${now}_input.tif ${now}_db.tif`, (err, stdout, stderr) => {
+                                                //delete the files
+                                                if (err) {
+                                                  //some err occurred
+                                                  console.error(err)
+                                                } else {
+                                                 // the *entire* stdout and stderr (buffered)
+                                                 console.log(`stdout: ${stdout}`);
+                                                 if(stderr){
+                                                    res.send({error: stderr});
+                                                 }else{
+                                                      if(stdout.trim()==="Fingerprint matches."){
+                                                        com.save(function(err, resp){
+                                                            if(err){
+                                                                res.status(400).send({error:err.toString()});
+                                                            } else{
+                                                               
+                                                                res.send({success:resp});
+                                                            }
+                                                        })
+                                                      }else{
+                                                          res.send({error:"Fingerprint does not match"});
+                                                      }
+                                                 }
+                                                 
+                                                }
+                                              });
+                                        }})
+                                    }).catch(function(err) {
+                                        console.error(err);
+                                    });
+                                }
+                         })
+                       
+                    }).catch(function(err) {
+                        console.error(err);
+                    });
+                  
+
+                }else{
+                    res.send({error:"Fingerprint not registered for user"});
+                }
             }
         })
+        
 
     } else{
         return res.status(403).send({error:'Not authorized'});

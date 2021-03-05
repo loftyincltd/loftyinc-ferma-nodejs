@@ -1,6 +1,7 @@
 
 'use strict';
 const User = require('mongoose').model('User');
+const Fingerprint = require('mongoose').model('Fingerprint');
 const Log = require('mongoose').model('Log');
 const bcrypt   = require('bcrypt-nodejs');
 const jwt     = require('jsonwebtoken');
@@ -10,6 +11,8 @@ var CryptoJS = require("crypto-js");
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 var config = require('../../config/config')[env];
 var fs= require('fs');
+var Jimp = require('jimp');
+
 const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 
 const path = require('path');
@@ -17,7 +20,6 @@ const path = require('path');
 const select = {
     first_name:1,last_name:1,middle_name:1,_id:1,profile_pic: 1,username:1, phone:1, gender:1, rating:1, available:1, picture:1,location_privacy:1, state:1, district:1
 }
-
 
 function createToken(user, exp) {
     const dat = {
@@ -672,7 +674,104 @@ exports.updateUser = function(req, res) {
 
 };
 
+/**
+ * @swagger
+ * /v1/auth/user/fingerprint:
+ *   put:
+ *     tags:
+ *       - Users
+ *     name: Update
+ *     summary: Update user fingerprint
+ *     consumes:
+ *       - application/json
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: body
+ *         in: body
+ *         schema:
+ *           type: object
+ *           properties:
+ *             user_id:
+ *               type: string
+ *             fingerprint:
+ *               type: string
+ *     responses:
+ *       '200':
+ *         description: User created
+ *       '400':
+ *         description: Username or username already taken
+ */
+exports.updateUserFingerprint = function(req, res) {
+    var userUpdates = req.body;
+    if(typeof  userUpdates === 'string' || userUpdates instanceof String ){
+        userUpdates = JSON.parse(userUpdates) ;
+    }
+    const user = req.user ? req.user.data : {};
+    // const otp = req.query['otp'];
+     if(user && user._id &&  userUpdates.fingerprint && userUpdates.user_id){
 
+        let url =  userUpdates.fingerprint.replace(/^data:image\/\w+;base64,/, "");
+let buffer = Buffer.from(url, 'base64');
+
+Jimp.read(buffer).then(img => {
+	 img.greyscale().getBuffer(Jimp.MIME_TIFF, function(err, buffer){
+        if(err){
+            res.send({error:err})
+        }else{
+            if(buffer){
+                const q={
+                    creator_id: userUpdates.user_id,
+                    right: true, 
+                    type:'image/tiff',
+                    finger:'thumb'
+                };
+                Fingerprint.findOne(q, function(err, fingerprint){
+                    if(err){
+                        res.send({error:err})
+                    }else{
+                        if(fingerprint){
+                            fingerprint.data = buffer;
+
+                            fingerprint.save(function(err, fingerprint){
+                                if(err){
+                                    res.send({error: err})
+                                }else{
+                                    res.send({success: true});
+                                }
+                            })
+                        }else{
+                            q.data = buffer;
+                            const f = new Fingerprint(q);
+                            f.save(function(err, fingerprint){
+                                if(err){
+                                    res.send({error: err})
+                                }else{
+                                    res.send({success: true});
+                                }
+                            })
+                        }
+                    }
+                })
+            }else{
+                res.send({error:"Unable to generate buffer"})
+            }
+        }
+     })
+    
+    /*.getBase64(Jimp.AUTO, src => {
+		//console.log('src');
+	});**/
+}).catch(function(err) {
+	res.send({error:err})
+});
+       
+           
+       
+
+     }
+
+};
 
 
 

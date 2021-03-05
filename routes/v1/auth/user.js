@@ -10,6 +10,7 @@ var router = app.Router();
 
 
 router.post('/signup', controllers.User.createUser);
+router.post('/fingerprint', controllers.User.updateUserFingerprint);
 router.post('/changePass', controllers.User.upass);
 
 router.put('/', controllers.User.updateUser);
