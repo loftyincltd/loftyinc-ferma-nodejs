@@ -926,7 +926,9 @@ exports.getUsers = function(req, res, next){
                                   
                             })
                     }else{
-                        res.send({success: resp})
+                        const r = {success: resp};
+                        console.log(r)
+                        res.send(r)
                     }
                
                 }
