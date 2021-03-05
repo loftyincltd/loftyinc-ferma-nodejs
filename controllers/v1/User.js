@@ -849,7 +849,7 @@ exports.getUsers = function(req, res, next){
     let state = req.query['state'];
     let district = req.query['district'];
     let occupation = req.query['occupation'];
-    const download = req.query['download'];
+    const download = req.query['download']=="true"? true: false;
     const user = req.user ? req.user.data: {};
     if(!user.super){
        state = user.state;
@@ -895,7 +895,7 @@ exports.getUsers = function(req, res, next){
                 if(err){
                     res.send({error:err});
                 } else{
-                     console.log(typeof download=="false")
+                  
                     if(!download){
                         const r = {success: resp};
                         console.log(r)
