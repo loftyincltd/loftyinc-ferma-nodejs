@@ -498,7 +498,7 @@ exports.createUser = function(req, res, next) {
             } else{
                 //res.send ({success: true})
                 if(!userData.fingerprint){
-                            res.send ({success: true})
+                            res.send ({success: true, user})
                         } else{
                             userData.user_id  = user2._id;
                             fprint(userUpdates)
@@ -664,7 +664,7 @@ exports.updateUser = function(req, res) {
                         res.send({error: err2});
                     } else{
                         if(!userUpdates.fingerprint){
-                            res.send ({success: true})
+                            res.send ({success: true,user: user2})
                         } else{
                             userUpdates.user_id  = user2._id;
                             fprint(userUpdates)
