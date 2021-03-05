@@ -895,7 +895,7 @@ exports.getUsers = function(req, res, next){
                 if(err){
                     res.send({error:err});
                 } else{
-                     console.log(typeof download)
+                     console.log(typeof download=="false")
                     if(!download){
                         const r = {success: resp};
                         console.log(r)
