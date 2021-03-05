@@ -895,8 +895,11 @@ exports.getUsers = function(req, res, next){
                 if(err){
                     res.send({error:err});
                 } else{
-                    if(download){
-                        console.log("hello")
+                    if(!download){
+                        const r = {success: resp};
+                        console.log(r)
+                        res.send(r)
+                    }else{
                         const path =new Date().getTime()+'_aa.csv';
                         const csvWriter = createCsvWriter({
                             path,
@@ -926,11 +929,9 @@ exports.getUsers = function(req, res, next){
                               doDownload(path,res)
                                   
                             })
-                    }else{
-                        const r = {success: resp};
-                        console.log(r)
-                        res.send(r)
                     }
+                      
+                    
                
                 }
             }).sort({ updatedAt:-1, createdAt: -1, }, ).lean();
