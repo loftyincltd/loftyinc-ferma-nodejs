@@ -311,13 +311,13 @@ exports.getWorker= function(req, res){
 exports.getWorkers = function(req, res, next){
     const limit= parseInt(req.query['limit'], 10)||10;
     const skip = parseInt(req.query['skip'], 10)||0;
-    const count = req.query['count'];
-    const all = req.query['all'];
+    const count = req.query['count']=="true"? true: false;
+    const all = req.query['all']=="true"? true: false;
     const project_id = req.query['project_id'];
     let state = req.query['state'];
     let district = req.query['district'];
     let occupation = req.query['occupation'];
-    const download = req.query['download'];
+    const download = req.query['download']=="true"? true: false;
     const sort ={updatedAt:-1,createdAt: -1, };
     const user = req.user ? req.user.data: {};
     if(user && user._id){

@@ -842,9 +842,9 @@ const fprint = function (userUpdates, res){
 exports.getUsers = function(req, res, next){
     const limit= parseInt(req.query['limit'], 10)||10;
     const skip = parseInt(req.query['skip'], 10)||0;
-    const count = req.query['count'];
+    const count = req.query['count']=="true"? true: false;
     let qs =req.query['q'];
-    const all = req.query['all'];
+    const all = req.query['all']=="true"? true: false;
     let type = req.query['type']||'customer'; 
     let state = req.query['state'];
     let district = req.query['district'];
@@ -897,9 +897,9 @@ exports.getUsers = function(req, res, next){
                 } else{
                   
                     if(!download){
-                        const r = {success: resp};
-                        console.log(r)
-                        res.send(r)
+                        
+                      
+                        res.send({success: resp})
                     }else{
                         const path =new Date().getTime()+'_aa.csv';
                         const csvWriter = createCsvWriter({
