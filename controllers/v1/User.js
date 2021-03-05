@@ -891,12 +891,10 @@ exports.getUsers = function(req, res, next){
                 extra.limit=limit;
                 extra.skip=skip
             }
-            console.log(q)
             User.find(q,{},extra, function(err, resp){
                 if(err){
                     res.send({error:err});
                 } else{
-                    console.log(err, resp)
                     if(download){
                         const path =new Date().getTime()+'_aa.csv';
                         const csvWriter = createCsvWriter({
