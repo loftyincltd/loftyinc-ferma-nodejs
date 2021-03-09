@@ -277,7 +277,7 @@ exports.getMyDetails=function(req, res, next){
  */
 exports.getStat=function(req, res, next){
     const u = req.user ? req.user.data: {};
-    if(u && u._id &&(user.type=="admin")){
+    if(u && u._id &&(u.type=="admin")){
         const states = Object.keys(district);
         const datums =[];
         states.forEach((elt, index)=>{
