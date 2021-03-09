@@ -280,6 +280,7 @@ exports.getStat=function(req, res, next){
     if(u && u._id &&(u.type=="admin")){
         const states = Object.keys(district);
         const datums =[];
+        const aa=[];
         states.forEach((elt, index)=>{
               User.countDocuments({
                  deleted: false,
@@ -294,7 +295,8 @@ exports.getStat=function(req, res, next){
                         y: count
                     }
                     datums[index]= c;
-                    if(datums.length==states.length){
+                    aa.push(true)
+                    if(aa.length==states.length){
                        res.send({success: datums})
                     }
                   }
