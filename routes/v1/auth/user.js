@@ -22,4 +22,5 @@ router.get('/login', controllers.User.getMyDetails);
 router.delete('/',controllers.User.removeUser);
 router.post('/login', controllers.User.login);
 router.get('/user', controllers.User.getSingleUser);
+router.get('/stat', controllers.User.getStat);
 module.exports = router;

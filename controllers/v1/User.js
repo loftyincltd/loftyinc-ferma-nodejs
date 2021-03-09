@@ -12,6 +12,7 @@ var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 var config = require('../../config/config')[env];
 var fs= require('fs');
 var Jimp = require('jimp');
+const district = require('../../dist.json')
 
 const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 
@@ -253,6 +254,60 @@ exports.getMyDetails=function(req, res, next){
     }
 }
 
+
+/**
+ * @swagger
+ * /v1/auth/user/stat:
+ *   get:
+ *     tags:
+ *       - Users
+ *     name: GET User
+ *     security:
+ *       - bearerAuth: []
+ *     summary: Get the user stat
+ *     produces:
+ *       - application/json
+ *     consumes:
+ *       - application/json
+ *     responses:
+ *       '200':
+ *         description: User details
+ *       '500':
+ *         description: Db Error
+ */
+exports.getStat=function(req, res, next){
+    const u = req.user ? req.user.data: {};
+    if(u && u._id &&(user.type=="admin")){
+        const states = Object.keys(district);
+        const datums =[];
+        states.forEach((elt, index)=>{
+              User.countDocuments({
+                 deleted: false,
+                 type:'customer',
+                 state:  states[index]
+              }, function(err, count){
+                  if(err){
+                      res.send({error:err})
+                  }else{
+                    const c = {
+                        x:states[index]+"",
+                        y: count
+                    }
+                    datums[index]= c;
+                    if(datums.length==states.length){
+                       res.send({success: datums})
+                    }
+                  }
+              });
+           
+        
+        
+    
+    });
+    } else{
+        res.status(403).send({error:'Invalid Request'});
+    }
+}
 
 /**
  * @swagger
