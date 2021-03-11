@@ -352,7 +352,7 @@ exports.getGender=function(req, res, next){
                    
                     c[elt]= count
                     aa.push(true)
-                    if(aa.length==states.length){
+                    if(aa.length==gender.length){
                        res.send({success: c})
                     }
                   }
