@@ -334,10 +334,13 @@ exports.getStat=function(req, res, next){
 exports.getGender=function(req, res, next){
     const u = req.user ? req.user.data: {};
     if(u && u._id &&(u.type=="admin")){
-        const gender = ["male", "female"]
-        const datums =[];
+        const gender = ["male", "female"];
         const aa=[];
+        const c = {
+                       
+        }
        gender.forEach((elt, index)=>{
+           
               User.countDocuments({
                  deleted: false,
                  type:'customer',
@@ -346,14 +349,11 @@ exports.getGender=function(req, res, next){
                   if(err){
                       res.send({error:err})
                   }else{
-                    const c = {
-                        x:states[index]+"",
-                        y: count
-                    }
-                    datums[index]= c;
+                   
+                    c[elt]= count
                     aa.push(true)
                     if(aa.length==states.length){
-                       res.send({success: datums})
+                       res.send({success: c})
                     }
                   }
               });
