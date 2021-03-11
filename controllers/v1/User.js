@@ -337,7 +337,7 @@ exports.getGender=function(req, res, next){
         const gender = ["male", "female"]
         const datums =[];
         const aa=[];
-        states.forEach((elt, index)=>{
+       gender.forEach((elt, index)=>{
               User.countDocuments({
                  deleted: false,
                  type:'customer',
