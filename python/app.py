@@ -8,6 +8,7 @@ from skimage.morphology import skeletonize, thin
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
+
 def removedot(invertThin):
     temp0 = numpy.array(invertThin[:])
     temp0 = numpy.array(temp0)
