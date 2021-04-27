@@ -67,11 +67,6 @@ app.use(bodyParser.urlencoded({ extended: false,
   limit: '50mb', }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-//app.use(multipart());
-//s3.createBucket('verify', function (err,resp) {
-  //console.log(err,resp)
-//})
-// let const;
 
 app.use('/', index) ;
 
