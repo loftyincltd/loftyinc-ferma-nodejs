@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 const http = require('http');
 var mkdirp = require('mkdirp');
 var CryptoJS = require("crypto-js");
+var bodyParser = require('body-parser')
 
 
 
@@ -30,7 +31,6 @@ app.use(require('./config/cors')(config))
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-app.use(express.bodyParser({limit: '50mb'}));
 app.use(jwt({
   secret: config.secret,
   credentialsRequired: false,
@@ -62,7 +62,9 @@ app.use(jwt({
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false,
+  parameterLimit: 100000,
+  limit: '50mb', }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 //app.use(multipart());
