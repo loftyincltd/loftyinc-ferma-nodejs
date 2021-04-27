@@ -30,7 +30,7 @@ app.use(require('./config/cors')(config))
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
+app.use(express.bodyParser({limit: '50mb'}));
 app.use(jwt({
   secret: config.secret,
   credentialsRequired: false,
