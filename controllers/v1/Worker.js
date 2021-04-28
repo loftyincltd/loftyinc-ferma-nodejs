@@ -89,7 +89,7 @@ exports.createWorker = function(req, res){
                                             res.send({error: err});
                                         }else{
                                            
-                                            exec(`python3 ${app} ${now}_input.tif ${now}_db.tif`, (err, stdout, stderr) => {
+                                            exec(`python ${app} ${now}_input.tif ${now}_db.tif`, (err, stdout, stderr) => {
                                                 //delete the files
                                                 if (err) {
                                                   //some err occurred
