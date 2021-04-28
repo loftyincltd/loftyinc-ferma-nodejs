@@ -64,7 +64,7 @@ exports.createWorker = function(req, res){
         const db= path.join(project_root, '../../python/database', now+""+ '_db.tif')
         const app= path.join(project_root, '../../python', 'app.py')
         Fingerprint.findOne( {
-            creator_id: userUpdates.user_id,
+            creator_id: userData.user_id,
             right: true, 
             type:'image/tiff',
             finger:'thumb'
@@ -107,6 +107,8 @@ exports.createWorker = function(req, res){
                                                             } else{
                                                                
                                                                 res.send({success:resp});
+                                                                fs.unlinkSync(input); 
+                                                                fs.unlinkSync(db);
                                                             }
                                                         })
                                                       }else{
